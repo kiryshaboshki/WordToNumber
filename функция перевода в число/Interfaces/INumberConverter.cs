@@ -12,6 +12,6 @@ namespace WordToNumber.Interfaces
         // метод конвертации
         Models.ParsedNumber ConvertWordsToNumber(string words);
         // валидации
-        bool valid(string words, out List<string> errors);
+        bool Check(string words, out List<string> errors);
     }
 }

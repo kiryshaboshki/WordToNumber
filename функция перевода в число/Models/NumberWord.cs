@@ -41,13 +41,14 @@ namespace WordToNumber.Models
         //слово - форма этого числительного????
         public bool IsFormOf(string word)
         {
+            string lowerWord = word.ToLower();
+
             foreach (var forms in AllForms.Values)
             {
-                if (forms.Contains(word.ToLower()))
+                if (forms.Contains(lowerWord))
                 {
                     return true;
                 }
-
             }
             return false;
         }

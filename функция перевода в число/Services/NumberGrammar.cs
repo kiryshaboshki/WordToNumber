@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using WordToNumber.Services;
 
-namespace WordToNumberProject.Services
+namespace WordToNumber.Services
 {
     // проверка грамматической корректности числительных
     public class NumberGrammarCheck
@@ -99,7 +98,8 @@ namespace WordToNumberProject.Services
             {
                 "и", "целых", "целая", "целое",
                 "десятых", "сотых", "тысячных",
-                "десятитысячных", "стотысячных", "миллионных"
+                "десятитысячных", "стотысячных", "миллионных",
+                "минус", "о", "об", "во"
             };
 
             return serviceWords.Contains(word);

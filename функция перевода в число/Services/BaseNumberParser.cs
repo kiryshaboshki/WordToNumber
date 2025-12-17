@@ -448,27 +448,26 @@ namespace WordToNumber.Services
         {
             // Тысяча 
             var thousand = new NumberWord("тысяча", 1000, "множитель", "женский");
+
             // Единственное число
             thousand.AddForm(GrammaticalCase.Nominative, "тысяча");
             thousand.AddForm(GrammaticalCase.Genitive, "тысячи");
             thousand.AddForm(GrammaticalCase.Dative, "тысяче");
             thousand.AddForm(GrammaticalCase.Accusative, "тысячу");
-            thousand.AddForm(GrammaticalCase.Instrumental, "тысячей");
+            thousand.AddForm(GrammaticalCase.Instrumental, "тысячей", "тысячью");
             thousand.AddForm(GrammaticalCase.Prepositional, "тысяче");
-            // Множественное число (2-4 тысячи)
+
+            // Множественное число формы
             thousand.AddForm(GrammaticalCase.Nominative, "тысячи");
             thousand.AddForm(GrammaticalCase.Genitive, "тысяч");
             thousand.AddForm(GrammaticalCase.Dative, "тысячам");
             thousand.AddForm(GrammaticalCase.Accusative, "тысячи");
             thousand.AddForm(GrammaticalCase.Instrumental, "тысячами");
             thousand.AddForm(GrammaticalCase.Prepositional, "тысячах");
-            // Множественное число (5+ тысяч)
-            thousand.AddForm(GrammaticalCase.Nominative, "тысяч");
-            thousand.AddForm(GrammaticalCase.Genitive, "тысяч");
-            thousand.AddForm(GrammaticalCase.Dative, "тысячам");
-            thousand.AddForm(GrammaticalCase.Accusative, "тысяч");
-            thousand.AddForm(GrammaticalCase.Instrumental, "тысячами");
-            thousand.AddForm(GrammaticalCase.Prepositional, "тысячах");
+
+            // Также добавьте форму "тысяч" для родительного падежа множественного числа
+            thousand.AddForm(GrammaticalCase.Nominative, "тысяч"); // Для "пять тысяч"
+
             NumberDictionary.Add(thousand);
 
             // Миллион 
@@ -481,10 +480,10 @@ namespace WordToNumber.Services
             million.AddForm(GrammaticalCase.Instrumental, "миллионом");
             million.AddForm(GrammaticalCase.Prepositional, "миллионе");
             // Множественное число
-            million.AddForm(GrammaticalCase.Nominative, "миллионы", "миллионов");
+            million.AddForm(GrammaticalCase.Nominative, "миллионы");
             million.AddForm(GrammaticalCase.Genitive, "миллионов");
             million.AddForm(GrammaticalCase.Dative, "миллионам");
-            million.AddForm(GrammaticalCase.Accusative, "миллионы", "миллионов");
+            million.AddForm(GrammaticalCase.Accusative, "миллионы");
             million.AddForm(GrammaticalCase.Instrumental, "миллионами");
             million.AddForm(GrammaticalCase.Prepositional, "миллионах");
             NumberDictionary.Add(million);
@@ -498,10 +497,10 @@ namespace WordToNumber.Services
             billion.AddForm(GrammaticalCase.Instrumental, "миллиардом");
             billion.AddForm(GrammaticalCase.Prepositional, "миллиарде");
             // Множественное число
-            billion.AddForm(GrammaticalCase.Nominative, "миллиарды", "миллиардов");
+            billion.AddForm(GrammaticalCase.Nominative, "миллиарды");
             billion.AddForm(GrammaticalCase.Genitive, "миллиардов");
             billion.AddForm(GrammaticalCase.Dative, "миллиардам");
-            billion.AddForm(GrammaticalCase.Accusative, "миллиарды", "миллиардов");
+            billion.AddForm(GrammaticalCase.Accusative, "миллиарды");
             billion.AddForm(GrammaticalCase.Instrumental, "миллиардами");
             billion.AddForm(GrammaticalCase.Prepositional, "миллиардах");
             NumberDictionary.Add(billion);
@@ -516,16 +515,20 @@ namespace WordToNumber.Services
             // нижний регистр
             string lowerWord = word.ToLower();
 
+            Console.WriteLine($"Ищем слово: '{lowerWord}' в словаре...");
+
             // Ищем в словаре
             foreach (var numberWord in NumberDictionary)
             {
                 if (numberWord.IsFormOf(lowerWord))
                 {
+                    Console.WriteLine($"Найдено: {numberWord.BaseForm} (тип: {numberWord.Type})");
                     return numberWord;
                 }
             }
 
             // Не нашли
+            Console.WriteLine($"Слово '{lowerWord}' не найдено в словаре");
             return null;
         }
 
@@ -580,6 +583,10 @@ namespace WordToNumber.Services
             }
             return new List<string>();
         }
+
+
+
     }
+
 }
 
