@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WordToNumber.Enums
 {
+    // если вдруг падежи будут разные
     public enum GrammaticalCase
     {
         Nominative, // именительный один два
